@@ -41,4 +41,3 @@ GROUP BY
 ORDER BY
         salary_avg DESC
 LIMIT 20;
-
