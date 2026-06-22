@@ -16,8 +16,10 @@ WHERE
         AND job_title not like '%Senior%'
 GROUP BY
         skills
+HAVING 
+        COUNT(job_postings_fact.job_id) 
 ORDER BY job_count DESC
-LIMIT 10
+LIMIT 150;
 
 --i plan to switch the '%senior%' for junior and compare. is that good?
 
@@ -38,7 +40,9 @@ WHERE
         -- Removed the specific title filter so we grab ALL analysts to compare!
 GROUP BY
         1, 2 -- Groups by seniority_tier (1) and skill_name (2)
+HAVING
+        COUNT(job_postings_fact.job_id)  > 500
 ORDER BY
-        seniority_tier DESC, -- Keeps all Senior rows together, then all Junior rows together
-        job_count DESC       -- Puts the most in-demand skills at the top of each group
-LIMIT 20;
+        seniority_tier, -- Keeps all Senior rows together, then all Junior rows together
+        job_count      -- Puts the most in-demand skills at the top of each group
+LIMIT 100;

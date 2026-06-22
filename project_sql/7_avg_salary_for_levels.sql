@@ -18,7 +18,6 @@ GROUP BY
         2
 ORDER BY
         1 DESC
-LIMIT 20;
 
 
 SELECT
@@ -40,4 +39,3 @@ GROUP BY
         END
 ORDER BY
         salary_avg DESC
-LIMIT 20;

@@ -17,7 +17,7 @@ FROM skills_dim
         INNER JOIN cte ON skills_job_dim.job_id = cte.job_id
 GROUP BY skills
 ORDER BY job_count desc
-
+LIMIT 25;
 
 
 -- most in-demand skill for data analyst
