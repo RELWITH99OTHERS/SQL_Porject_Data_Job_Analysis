@@ -45,4 +45,4 @@ WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
 
 
 
-SELECT * FROM company_dim
+SELECT * FROM job_postings_fact limit 10

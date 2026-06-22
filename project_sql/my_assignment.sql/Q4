@@ -1,0 +1,28 @@
+/*company with the highest number of job openings 
+within each major job category*/
+
+with cte AS(
+    SELECT
+    company_id,
+    job_title_short,
+    count(job_id) AS job_count,
+    ROW_number () OVER(
+        partition by job_title_short
+        ORDER BY count(job_id) DESC
+    ) job_rank
+FROM
+    job_postings_fact
+GROUP BY
+    company_id,
+    job_title_short
+)
+
+SELECT 
+        name as company_name,
+        cte.job_title_short,
+        cte.job_count
+from cte
+    INNER JOIN company_dim on cte.company_id = company_dim.company_id
+WHERE
+    job_rank = 1
+ORDER BY job_count DESC
